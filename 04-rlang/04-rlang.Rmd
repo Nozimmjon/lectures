@@ -26,7 +26,7 @@ opts_chunk$set(
   )
 ```
 
-# Table of contents
+# Mundarija
 
 1. [Prologue](#prologue)
 
