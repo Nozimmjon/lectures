@@ -132,7 +132,7 @@ Etc.
 
 ---
 
-# Logical operators (cont.)
+# Mantiqiy operatorlar (davomi.)
 
 You can read more about these logical operators <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/logical.html" target="_blank">here</a> and <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/Logic.html" target="_blank">here</a>. For the moment, I'll just emphasise a select few of them...
 
