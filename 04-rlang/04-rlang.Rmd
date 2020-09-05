@@ -23,7 +23,6 @@ opts_chunk$set(
   cache=F#, echo=F, warning=F, message=F
   )
 ```
-
 # Mundarija.
 
 1. [Prolog](#prologue)
