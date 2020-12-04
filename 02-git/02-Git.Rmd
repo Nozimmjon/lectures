@@ -1,8 +1,7 @@
 ---
-title: "Data Science for Economists"
-subtitle: "Lecture 2: Version control with Git(Hub)"
-author: "Grant McDermott"
-date: "University of Oregon | [EC 607](https://github.com/uo-ec607)" #"`r format(Sys.time(), '%d %B %Y')`"
+title: "Iqtisodchilar uchun ma'lumotlar bazasi"
+subtitle: "Ma'ruza № 2: Git(Hub)da Version control  "
+author: "Ortiqov Nozimjon"
 output:
   xaringan::moon_reader:
     css: [default, metropolis, metropolis-fonts] 
@@ -24,116 +23,103 @@ opts_chunk$set(
   )
 ```
 
-# Table of contents
+# Mundarija
 
-1. [Prologue](#prologue)
+1. [Prolog](#prologue)
 
-2. [Git and GitHub](#git)
+2. [Git va GitHub](#git)
 
 3. [Git(Hub) + RStudio](#rstudio)
 
-4. [Git from the shell](#shell)
+4. [Shelldan Gitga](#shell)
 
-5. [Merge conflicts](#merge)
+5. [Muammolarni birlashtirish](#merge)
 
-6. [Branches and forking](#branches)
+6. [Branchlar va forking](#branches)
 
-7. [Other tips](#other)
+7. [Boshqa ko'rsatmalar](#other)
 
-8. [Summary](#summary)
+8. [Xulosa](#summary)
 
-9. [Appendix: FAQ](#faq)
 
 
 ---
 class: inverse, center, middle
 name: prologue
 
-# Prologue
+# Prolog
 
 <html><div style='float:left'></div><hr color='#EB811B' size=1px width=796px></html>
 
 ---
 
-# Student presentation: R Markdown
+# R Markdown
 
-Resources:
-- Website: https://rmarkdown.rstudio.com
-- Cheatsheat: https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf
-- Book: [*R Markdown: The Definitive Guide*](https://bookdown.org/yihui/rmarkdown) (Yihui Xie, JJ Allaire, and Garrett Grolemund)
+Resurslar:
+- Vebsayt: https://rmarkdown.rstudio.com
+- : https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf
+- Qo'llanma: [*R Markdown: The Definitive Guide*](https://bookdown.org/yihui/rmarkdown) (Yihui Xie, JJ Allaire, va Garrett Grolemund)
 
-Other points:
-- You will be submitting all of your assignments as R Markdown documents.
-- FWIW, my lecture slides and notes are all written in R Markdown too. (E.g. This slide deck is built using the [xaringan package](https://github.com/yihui/xaringan/wiki) with the metropolis theme.)
+Boshqa jihatlar:
+- Siz barcha topshiriqlaringizni R Markdown hujjatlari sifatida topshirasiz.
+- FWIW, mening ma'ruza slaydlarim va eslatmalarim hammasi R Markdownda yozilgan. (Masalan, ushbu slayd pastki metropol mavzusiga ega [xaringan package](https://github.com/yihui/xaringan/wiki yordamida qurilgan.)) 
 
 ---
 
-# Before we start
+# Boshlashimizdan oldin.
 
-We went through a sofware installation check during the previous lecture. By now you should have:
+Avvalgi ma'ruza davomida biz dasturiy ta'minotni o'rnatishni tekshirib chiqdik. Hozirda sizda quyidagilar o'rnatilgan (yuklab olingan) bo'lishi kerak:
 
-☑ Installed [R](https://www.r-project.org/).
+☑ [R](https://www.r-project.org/).
 
-☑ Installed [RStudio](https://www.rstudio.com/products/rstudio/download/preview/).
+☑ [RStudio](https://www.rstudio.com/products/rstudio/download/preview/).
 
-☑ Installed [Git](https://git-scm.com/downloads).
+☑ [Git](https://git-scm.com/downloads).
 
-☑ Created an account on [GitHub](https://github.com/) 
+☑ [GitHub](https://github.com/) da shaxsiy akkauntingiz yaratilgan bo'lishi kerak. 
 
-☑ Accepted an invitation to EC 607 course repo (quarter specific).
 
 
 </br>
 
-If in doubt about software, please consult Jenny Bryan's amazing guide: http://happygitwithr.com.
+Agar dasturiy ta'minot haqida shubhangiz bo'lsa, iltimos, Jenni Bryanning ajoyib qo'llanmasiga murojaat qiling: http://happygitwithr.com.
 
 ---
 class: inverse, center, middle
 name: git
 
-# Git and GitHub
+# Git va GitHub
 <html><div style='float:left'></div><hr color='#EB811B' size=1px width=796px></html>
 ---
 
-# Why bother?
-
-<div align="center">
-<img src="http://phdcomics.com/comics/archive/phd101212s.gif" height=500>
-</div>
-
----
-
-# Git(Hub) solves this problem
+# Git(Hub) bu muammoni yechadi.
 
 ### Git
 
-- Git is a distributed version control system. (Wait, what?)
-- Okay, try this: Imagine if Dropbox and the "Track changes" feature in MS Word had a baby. Git would be that baby.
-- In fact, it's even better than that because Git is optimised for the things that economists and data scientists spend a lot of time working on (e.g. code).
-- There is a learning curve, but I promise you it's worth it.
+ Git - tarqatilgan versiyani boshqarish tizimi. 
+- Darhaqiqat,Git iqtisodchilar va ma'lumot olimlari ko'p vaqt sarflaydigan narsalar uchun optimallashtirilgan (masalan, kodlar uchun).
+- Qisqasi sizga va'da beramizki bu siz o'rganishingiz uchun arziydi.
 
 ### GitHub
-
-- It's important to realise that Git and GitHub are distinct things.
-- GitHub is an online hosting platform that provides an array of services built on top of the Git system. (Similar platforms include Bitbucket and GitLab.)
-- Just like we don't *need* Rstudio to run R code, we don't *need* GitHub to use Git... But it will make our lives so much easier.
-
+ 
+Git va GitHub bir-biridan farq qiladigan narsalar ekanligini anglash juda muhimdir.
+- GitHub - bu Git tizimining yuqori qismida qurilgan ko'plab xizmatlarni taqdim etadigan onlayn xosting platformasi. (Shu kabi platformalarga Bitbucket va GitLab kiradi.)
+- R kodini ishga tushirish uchun bizga Rstudio *kerak emas*  bo'lgani kabi, Git-dan foydalanish uchun  GitHub *kerak emas* ... Ammo bu bizning hayotimizni juda osonlashtiradi.
 ---
 
-# Git(Hub) for scientific research
+# Ilmiy izlanish uchun Git(Hub)
 
-### From software development...
+### Dasturiy mahsulot rivojidan...
 
-Git and GitHub's role in global software develoment is not in question.
-- There's a high probability that your favourite app, program or package is built using Git-based tools. (RStudio is a case in point.)
+Git va GitHubning global dasturiy ta'minotni rivojlantirishdagi o'rni savol tug'dirmaydi.
+- Git-ga asoslangan vositalar yordamida sevimli dastur yoki to'plamingizni tuzish qiyinchilik tug'dirmaydi. (RStudio bunga misoldir.)
 
-### ... to scientific research
+### ... ilmiy izlanishga
+ 
+- - VC-ning afzalliklari va hamkorlik vositalari, Git (Hub) ochiq fan va takrorlanuvchanlik ideallarini ishga solishga yordam beradi.
+- GH-dagi [maqolalarim](http://grantmcdermott.com/research/) uchun barcha kodlar va ma'lumotlarni joylashtiraman. O'quv materiallari uchun bir xil. Men hatto [veb-saytim](https://github.com/grantmcdermott/grantmcdermott.github.io)ni saqlash uchun foydalanaman.(Perkel, 2016).
 
-Scientists and academic researchers are cottoning on too. 
-- Benefits of VC and collaboration tools aside, Git(Hub) helps to operationalise the ideals of open science and reproducibility.
-- Journals have increasingly strict requirements regarding reproducibility and data access. GH makes this easy (DOI integration, off-the-shelf licences, etc.)
-- I host all of the code and data for my [papers](http://grantmcdermott.com/research/) on GH. Same for teaching materials. I even use it to host and maintain my [website](https://github.com/grantmcdermott/grantmcdermott.github.io).
-- *Nature:* "[Democratic databases: science on GitHub](https://www.nature.com/news/democratic-databases-science-on-github-1.20719)" (Perkel, 2016).
+-  "[Demokratik ma'lumotlar bazalari: GitHubdagi ilm-fan](https://www.nature.com/news/democratic-databases-science-on-github-1.20719)" 
 
 ---
 class: inverse, center, middle
@@ -144,42 +130,36 @@ name: rstudio
 
 ---
 
-# Seemless integration
+# Uzluksiz integratsiya
 
-One of the (many) great features of RStudio is how well it integrates version control into your everyday workflow.
-- Even though Git is a completely separate program to R, they feel like part of the same "thing" in RStudio.
-- This next section is about learning the basic Git(Hub) commands and the recipe for successful project integration with RStudio.
-
---
-
-I also want to bookmark a general point that we'll revisit many times during this course: 
-- The tools that we're using all form part of a coherent data science ecosystem.
-- Greatly reduces the cognitive overhead ("aggregation") associated with traditional workflows, where you have juggle multiple programs and languages at the same time.
+RStudioning ajoyib xususiyatlaridan biri - bu sizning kundalik ish oqimingizga version controlni qanchalik yaxshi singdirganligidir.
+- Garchi Git R uchun mutlaqo alohida dastur bo'lsa ham, ular RStudioda xuddi o'sha "narsa" ning bir qismi kabi ishlashadi.
+- Ushbu keyingi bo'lim asosiy Git (Hub) buyruqlari va RStudio bilan loyihani muvaffaqiyatli birlashtirish yo'lini o'rganish haqida.
 
 ---
 
-# Link a GitHub repo to an RStudio Project 
+# GitHub reposini RStudio loyihasiga ulang
 
-The starting point for our workflow is to link a GitHub repository (i.e. "repo") to an RStudio Project. Here are the steps we're going to follow:
+Bizning ish oqimimizning boshlang'ich nuqtasi GitHub omborini (ya'ni "repo") RStudio loyihasiga bog'lashdir. Biz bajaradigan qadamlar:
 
-1. Create the repo on GitHub and initialize with a README.
-2. Copy the HTTPS/SSH link (the green "Clone or Download" button).<sup>1</sup>
-3. Open up RStudio.
-4. Navigate to **File -> New Project -> Version Control -> Git**.
-5. Paste your copied link into the "Repository URL:" box.
-6. Choose the project path ("Create project as subdirectory of:") and click **Create Project**.
+1. GitHubda repo yarating va "README" bilan boshlang.
+2. HTTPS/SSH havolsini nusxalang (yashil rangdagi "Clone yoki Download" tugmachasi).<sup>1</sup>
+3. RStudio oching.
+4.  **File -> New Project -> Version Control -> Git** shu yo'l orqali bajaring.
+5.Nusxalangan havolani "Repository URL:" ga joylang (Ctrl+V).
+6. Loyiha yo'lini tanlang **Create Project** tugmasini bosing.
 
-.footnote[<sup>1</sup> It's easiest to start with HTTPS, but <a href="http://happygitwithr.com/ssh-keys.html#ssh-keys" target="_blank">SSH</a> is advised for more advanced users.]
+.footnote[<sup>1</sup> HTTPS bilan boshlash osonroq, lekin <a href="http://happygitwithr.com/ssh-keys.html#ssh-keys" target="_blank">SSH</a> yangi boshlayotganlar uchun tavsiya qilinadi.]
 
 --
 
 </br>
-Now, I want you to practice by these steps by creating your own repo on GitHub — call it "test" — and cloning it via an RStudio Project.
-- See my GIF walkthrough on the next slide...
+Endi GitHub-da o'z repoingizni yaratib, uni "test" deb nomlang va uni RStudio loyihasi orqali klonlash orqali ushbu amallarni bajarishingiz kerak.
+- Keyingi taqdimotdagi GIFni ko'ring...
 
 ---
 
-# Link a GitHub repo to an RStudio Project 
+# GitHub reposini RStudio loyihasiga ulang
 
 <div align="center">
 <img src="pics/git-create-repo.gif" height=500>
@@ -187,23 +167,23 @@ Now, I want you to practice by these steps by creating your own repo on GitHub �
 
 ---
 
-# Make some local changes
+# Ba'zi ichki o'zgarishlar kiriting
 
-Look at the top-right panel in your RStudio IDE. Do you see the "Git" tab? 
-- Click on it. 
-- There should already be some files in there, which we'll ignore for the moment.<sup>1</sup>
+RStudio IDE-dagi yuqori o'ng panelga qarang. "Git" yorlig'ini ko'rasizmi?
+- Git yozuvi ustiga bosing. 
+- U yerda  fayllar bo'lishi kerak, biz ularni hozircha e'tiborsiz qoldirib turamiz.<sup>1</sup>
 
-Now open up the README file (see the "Files" tab in the bottom-right panel).
-- Add some text like "Hello World!" and save the README.
-- Do you see any changes in the "Git" panel? Good. (Raise your hand if not.)
+Endi README faylini oching (pastki o'ng paneldagi "Fayllar" yorlig'iga qarang).
+- O'zingizga yoqqan matn kiriting (masalan: Assalom, O'zbekiston) va READMEni saqlang .
+- "Git" panelda qandaydir o'zgarsihlarni ko'rdingizmi? Agar ko'rgan bo'lsangiz bu yaxshi. 
 
-Again, see my GIF walkthrough on the next slide...
+Keyingi taqdimotimizdagi GIFni ham ko'rib oling...
 
-.footnote[<sup>1</sup> They're important, but not for the purposes of this section.]
+.footnote[<sup>1</sup> Ular muhim, ammo ushbu bo'limning maqsadlari uchun emas.]
 
 ---
 
-# Make some local changes 
+# Ba'zi ichki o'zgarishlar. 
 
 <div align="center">
 <img src="pics/git-local-change.gif" height=500>
@@ -211,42 +191,39 @@ Again, see my GIF walkthrough on the next slide...
 
 ---
 
-# Main Git operations
+# Asosiy operaatsiyalar
 
-Now that you've cloned your first repo and made some local changes, it's time to learn the four main Git operations.
+Endi siz birinchi reponi klonlab, o'zgarishlarni amalga oshirganingizdan so'ng, Gitning to'rtta asosiy operatsiyasini o'rganish vaqti keldi.
 
-1. **Stage** (or "add")
-  - Tell Git that you want to add changes to the repo history (file edits, additions, deletions, etc.)
+1. **Stage** (yoki "qo'shmoq")
+  - Bu orqali, Gitga repo tarixiga o'zgartirishlar kiritishni xohlayotganligingizni ko'rsating (faylni tahrirlash, qo'shish, o'chirish va h.k.)
 2. **Commit**
-  - Tell Git that, yes, you are sure these changes should be part of the repo history.
+  - Bu orqali, Gitga ushbu o'zgarishlar repo tarixining bir qismi ekanligini ayting
 3. **Pull**
-  - Get any new changes made on the GitHub repo (i.e. the upstream remote), either by your collaborators or you on another machine.
+  -  Bu orqali, GitHub reposida yuz bergan o'zgarishlardan siz o'z sherigingizni xabardor qilishingiz mumkin.
 4. **Push**
-  - Push any (commited) local changes to the GitHub repo
+  - Har qanday (kiritilgan) o'zgarishlarni GitHub reposiga o'tkazing
 
 --
 
-For the moment, it will be useful to group the first two operations and last two operations together. (They are often combined in practice too, although you'll soon get a sense of when and why they should be split up.)
+Hozircha dastlabki ikkita operatsiyani va oxirgi ikkita operatsiyani guruhlash foydali bo'ladi. (Ular tez-tez amalda ham birlashtiriladi, ammo tez orada ularni qachon va nima uchun ajratish kerakligini tushunasiz.)
 
 --
 
-Ready for more GIFs?
+Ko'proq GIFlar ko'rishga tayyormisiz?
 
 ---
 
-# Stage and Commit
+# Stage va Commit
 
 <div align="center">
 <img src="pics/git-stage-commit.gif" height=500>
 </div>
 
---
-
-Note the helpful commit message to ourselves.
 
 ---
 
-# Push and Pull
+# Push va Pull
 
 <div align="center">
 <img src="pics/git-push-pull.gif" height=500>
@@ -254,93 +231,75 @@ Note the helpful commit message to ourselves.
 
 --
 
-See [here](https://ohi-science.org/manual/#rpostback-askpass-error) if you get `Error: unable to read askpass response from 'rpostback-askpass'`.
+ `Agarda sizda Error ya'ni xatolik belgisi chiqsa'` [bu yerga](https://ohi-science.org/manual/#rpostback-askpass-error) qarang.
 
 ---
 
-# Recap
+# Xulosa
 
-Here's a step-by-step summary of what we just did.
-- Made same changes to a file and saved them locally.
-- *Staged* these local changes.
-- *Committed* these local changes to our Git history with a helpful message.
-- *Pulled* from the GitHub repo just in case anyone else made changes too (not expected here, but good practice).
-- *Pushed* our changes to the GitHub repo.
+Endi qilgan ishlarimizning bosqichma-bosqich xulosalarini ko'rib chiqamiz.
+- Faylga o'zgartirishlar kiritildi va ular saqladi.
+- *Staged* ichki o'zgartirish.
+- *Committed* Git tarixiga ichki o'zgartirish.
+- *Pulled* GitHub reposida, kimdir ham o'zgartirish kiritishi mumkin  (bu kutilmagan, ammo yaxshi amaliyot).
+- *Pushed* GitHub repodagi biz kiritgan o'zgarishlar.
 
 </br>
 
-NB aside: Always pull from the upstream repo *before* you push any changes. Seriously, do this even on solo projects; making it a habit will save you headaches down the road.
-
 --
 
-PS — You were likely challenged for your GitHub credentials at some point. Learn how to cache these [here](https://happygitwithr.com/credential-caching.html).
-
+PS - Sizdan GitHub ma'lumotlari bir muncha vaqt talab qilgan bo'lishi mumkin. [Bu yerda](https://happygitwithr.com/credential-caching.html)bularni qanday keshlashni o'rganing 
 --
 
-PPS — Speaking of credentials, an even better approach is to [switch to SSH](https://happygitwithr.com/ssh-keys.html). I recommend you do this once you feel comfortable with the main Git operations.
-
----
-
-# Why this workflow?
-
-Creating the repo on GitHub first means that it will always be "upstream" of your (and any other) local copies.
-- In effect, this allows GitHub to act as the central node in the distributed VC network.
-- Especially valuable when you are collaborating on a project with others — more on this later — but also has advantages when you are working alone.
-- If you would like to move an existing project to GitHub, my advice is still to create an empty repo there first, clone it locally, and then copy all your files across.
-
-RStudio Projects are great. 
-- Again, they interact seemlessly with Git(Hub), as we've just seen. 
-- They also solve absolute vs. relative path problems, since the .Rproj file acts as an anchor point for all other files in the repo.<sup>1</sup>
-
-.footnote[<sup>1</sup> You know that calling files from `YourComputer/YourName/Documents/Special-Subfolder/etc` in your scripts makes you a bad person, right?]
+PPS - ishonch yorliqlari haqida gapirganda, [SSH](https://happygitwithr.com/ssh-keys.html)ga o'tish yanada yaxshi yondashuvdir. Asosiy Git operatsiyalarini o'rganganingizdan  so'ng buni qilishni maslahat beraman.
 
 ---
 class: inverse, center, middle
 name: shell
 
-# Git from the shell
+# Shelldan  Gitga  
 <html><div style='float:left'></div><hr color='#EB811B' size=1px width=796px></html>
 
 ---
 
-# Why bother with the shell?
+# Nima sababdan shell?
 
-The GitHub + RStudio Project combo is ideal for new users.
-- RStudio's Git integration and built-in GUI cover all the major operations.
-- RStudio Projects FTW.
+GitHub + RStudio Loyiha kombinati yangi foydalanuvchilar uchun juda mos keladi.
+- RStudio-ning Git integratsiyasi va o'rnatilgan GUI barcha asosiy operatsiyalarni qamrab oladi.
+- RStudio loyihalari muaffaqiyatli.
 
-However, I want to go over Git <a href="http://happygitwithr.com/ssh-keys.html#shell" target="_blank">shell</a> commands so that you can internalise the basics.
-- The shell is more powerful and flexible. Does some things that the RStudio Git GUI can't.
-- Potentially more appropriate for projects that aren't primarily based in R. (Although, no real harm in using RStudio Projects to clone a non-R repo.)
-- Also, I'm kinda tired of screen recording animated GIFs.
+Biroq, men Git <a href="http://happygitwithr.com/ssh-keys.html#shell" target="_blank">shell</a> buyruqlarini ko'rib chiqmoqchiman, shunda siz asosiy jihtlarni erkin o'rgana olasiz.  
+- Shell yanada kuchli va moslashuvchan hisoblanadi. 
+- Shell asosan Rga asoslanmagan loyihalar uchun potentsial jihatdan ko'proq mos keladi.
+- Bundan tashqari, men animatsion GIF-larni ekranga yozishdan charchadim.
 
 --
 
-(Yes, we're going to cover the shell in depth next lecture, but think of this as a sneak preview.)
+(To'g'ri, biz keyingi ma'ruzani chuqurroq yoritib beramiz, lekin bu narsalar hozirdan tushinib borish bizga ancha yordam beradi.)
 
 ---
 
-# Main Git shell commands
+# Asosiy Git shell buyruqlari
 
-Clone the repo.
+Reponi clonelash.
 ```bash
 $ git clone REPOSITORY-URL
 ```
 
-See the commit history (hit spacebar to scroll down or q to exit).
+Qabul qilish tarixini ko'ring (pastga siljish uchun bo'sh joyni bosing,chiqish uchun esa q tugmachasini).
 ```bash
 $ git log
 ```
 
-What has changed? 
+Nima o'zgargan? 
 ```bash
 $ git status
 ```
 ---
 
-# Main Git shell commands (cont.)
+# Asosiy Git shell buyruqlari (davomi.)
 
-Stage ("add") a file or group of files.
+Stage ("qo'shish") fayl yoki fayllar guruhi.
 ```bash
 $ git add NAME-OF-FILE-OR-FOLDER
 ```
@@ -362,14 +321,13 @@ $ git add .
 
 ---
 
-# Main Git shell commands (cont.)
+# Asosiy Git shell buyruqlari (davomi.)
 
-Commit your changes.
+O'zgarishlarni "Commit" qiling .
 ```bash
-$ git commit -m "Helpful message"
+$ git commit -m "Yordamchi xabar"
 ```
-
-Pull from the upstream repository (i.e. GitHub).
+Yuqori oqim omboridan torting (ya'ni GitHubdan).
 ```bash
 $ git pull
 ```
@@ -383,170 +341,169 @@ $ git push
 class: inverse, center, middle
 name: merge
 
-# Merge conflicts
+# Muammolarni birlashtirish
 <html><div style='float:left'></div><hr color='#EB811B' size=1px width=796px></html>
 
 ---
 
-# Collaboration time 
+# Birlashtirish
 
-Turn to the person next to you. You are now partners. (Congratulations.)
+Sherigingizga  murojaat qiling. Siz endi sheriksiz. (Tabriklayman.)
+- P1: P2ni siz ilgari yaratgan GitHub repo-ni "sinov" bo'yicha hamkorlikda qatnashishga taklif qiling. (Reponing *Settings (Sozlamalar) * yorlig'iga qarang.)
 
-- P1: Invite P2 to join you as a collaborator on the "test" GitHub repo that you created earlier. (See the *Settings* tab of your repo.)
+- P2:P1ning repo sini o'zingizga clone  qiling. <sup>1</sup>. README ga ba'zi o'zgartirishlar kiriting (masalan: qaysidir qatorlarni o'chiring yoki o'z matningizni qo'shing). Ushbu o'zgarishlarni Stage, commit va push qiling.
 
-- P2: Clone P1's repo to your local machine.<sup>1</sup> Make some edits to the README (e.g. delete lines of text and add your own). Stage, commit and push these changes.
+- P1: O'z o'zgarishlaringizni READMEga o'z kompyuteringizga kiriting. Stage, commit va keyin push qiling (  GitHub repodan pull qilganingizdan *keyin* albatta).
 
-- P1: Make your own changes to the README on your local machine. Stage, commit and then try to push them (*after* pulling from the GitHub repo first).
-
-.footnote[<sup>1</sup> Change into a new directory first or give it a different name to avoid conflicts with your own "test" repo. Don't worry, Git tracking will still work if you change the repo name locally.]
+O'zingizning "sinov" repo bilan muammo bo'lmasligi uchun avval yangi katalogga o'ting yoki unga boshqa nom bering. 
 
 --
 
-Did P1 encounter a `merge conflict` error? 
-- Good, that's what we were trying to trigger.
-- Now, let's learn how to fix them.
+P1  `merge conflict(birlashtirishda muammo)`ga duch keldimi? 
+
+- Yaxshi, biz buni tetiklamoqchi edik.
+- Endi, ularni qanday tuzatishni bilib olaylik.
 
 ---
 
-# Merge conflicts
+# Muammolarni birlashtirish
 
-Let's confirm what's going on.
+Keling, nima bo'layotganini ko'rib chiqaylik.
 ```bash
 $ git status
 ```
 
-As part of the response, you should see something like:
+Javobning bir qismi sifatida siz quyidagini ko'rishingiz kerak:
 ```bash
-Unmerged paths:
-  (use "git add <file>..." to mark resolution)
+Birlashtirilmagan yo'llar:
+  (piksellar sonini belgilash uchun"git add <file>... dan foydalaning" )
 
-   * both modified:   README.md 
+   * ikkalasi ham o'zgartirilgan:   README.md 
 ```
-Git is protecting P1 by refusing the merge. It wants to make sure that you don't accidentally overwrite all of your changes by pulling P2's version of the README.
-- In this case, the source of the problem was obvious. Once we start working on bigger projects, however, `git status` can provide a helpful summary to see which files are in conflict.
+P2ning README versiyasini tortib, barcha o'zgarishlaringizni tasodifan ustiga yozmasligingizga ishonch hosil qilish maqsdida, Git birlashishni rad etadi va P1-ni himoya qiladi.
+- Bunday holda,bizga muammoning manbai aniq edi. Biroq kattaroq loyihalar ustida ishlashni boshlaganimizdan so'ng, "git status" qaysi fayllarda muammolar mavjud ekanligini ko'rish uchun foydali xulosa berishi mumkin.
 
 ---
 
-# Merge conflicts (cont.)
+# Muammolarni birlashtirish (davomi.)
 
-Okay, let's see what's happening here by opening up the README file. RStudio is a good choice, although your preferred text editor is fine.<sup>1</sup>
+Xo'sh, keling, README faylini ochib, bu erda nima sodir bo'layotganini ko'raylik. Siz tanlagan matn muharriri yaxshi bo'lsa ham, RStudio yaxshi tanlovdir.<sup>1</sup>
 
-You should see something like:
+Siz shularni ko'rishingiz mumkin:
 ```bash
 # README
-Some text here.
+Bu yerda qisqacha matn
 <<<<<<< HEAD
-Text added by Partner 2.
+Partner 2 tomonidan kiritilgan matn.
 =======
-Text added by Partner 1.
+Partner 1 tomonidan kiritilgan matn.
 >>>>>>> 814e09178910383c128045ce67a58c9c1df3f558.
-More text here.
+Bu yerda ko'roq matlarni ko'rishingiz mumkin.
 ```
 
-.footnote[<sup>1</sup> Other good choices are <a href="https://code.visualstudio.com/" target="_blank">VS Code</a> or <a href="https://atom.io/" target="_blank">Atom</a>, which both support native Git(Hub) integration. You can set your preferred default editor with `$ git config --global core.editor "PREFERRED_EDITOR"`.]
+[<sup>1</sup> Boshqa yaxshi tanlovlar <a href="https://code.visualstudio.com/" target="_blank">VS Code</a> yoki <a href="https://atom.io/" target="_blank">Atom</a>, ikkalasi ham mahalliy Git (Hub) integratsiyasini qo'llab-quvvatlaydi. Siz istagan standart muharririni `$ git config --global core.editor "PREFERRED_EDITOR"`.] bilan o'rnatishingiz mumkin
 
 ---
 
-# Merge conflicts (cont.)
+# Muammolarni birlashtirish (davomi.)
 
-What do these symbols mean?
+Bu belgilar nimani anglatadi?
 
 ```bash
 # README
-Some text here.
+Bu yerda qisqacha matn.
 <<<<<<< HEAD
-Text added by Partner 2.
+Partner 2 tomonidan kiritilgan matn.
 =======
-Text added by Partner 1.
+Partner 1 tomonidan kiritilgan matn.
 >>>>>>> 814e09178910383c128045ce67a58c9c1df3f558.
-More text here.
+Bu yerda ko'roq matlarni ko'rishingiz mumkin.
 ```
 
 ---
 count: false
 
-# Merge conflicts (cont.)
+# Muammolarni birlashtirish (davomi.)
 
-What do these symbols mean?
+Bu belgilar nimani anglatadi?
 
 ```bash
 # README
-Some text here.
+Bu yerda qisqacha matn.
 *<<<<<<< HEAD
-Text added by Partner 2.
+Partner 2 tomonidan kiritilgan matn.
 =======
-Text added by Partner 1.
+Partner 1 tomonidan kiritilgan matn.
 >>>>>>> 814e09178910383c128045ce67a58c9c1df3f558.
-More text here.
+Bu yerda ko'roq matlarni ko'rishingiz mumkin.
 ```
 
-- `<<<<<<< HEAD` Indicates the start of the merge conflict.
+- `<<<<<<< HEAD` Birlashish muammolarning boshlanishini bildiradi.
 
 ---
 count: false
 
-# Merge conflicts (cont.)
+# Muammolarni birlashtirish (davomi.)
 
-What do these symbols mean?
+Bu belgilar nimani anglatadi?
 
 ```bash
 # README
-Some text here.
+Bu yerda qisqacha matn.
 <<<<<<< HEAD
-Text added by Partner 2.
+Partner 2 tomonidan kiritilgan matn.
 *=======
-Text added by Partner 1.
+Partner 1 tomonidan kiritilgan matn.
 >>>>>>> 814e09178910383c128045ce67a58c9c1df3f558.
-More text here.
+Bu yerda ko'roq matlarni ko'rishingiz mumkin.
 ```
 
-- `<<<<<<< HEAD` Indicates the start of the merge conflict.
-- `=======` Indicates the break point used for comparison.
-
+- `<<<<<<< HEAD` Birlashish ziddiyatining boshlanishini bildiradi.
+- `=======` Taqqoslash uchun ishlatilgan sinish nuqtasini bildiradi.
 ---
 count: false
 
-# Merge conflicts (cont.)
+#  Muammolarni birlashtirish (davomi.)
 
-What do these symbols mean?
+Bu belgilar nimani anglatadi?
 
 ```bash
 # README
-Some text here.
+Bu yerda qisqacha matn.
 <<<<<<< HEAD
-Text added by Partner 2.
+Partner 2 tomonidan kiritilgan matn..
 =======
-Text added by Partner 1.
+Partner 1 tomonidan kiritilgan matn.
 *>>>>>>> 814e09178910383c128045ce67a58c9c1df3f558.
-More text here.
+Bu yerda ko'roq matlarni ko'rishingiz mumkin.
 ```
 
-- `<<<<<<< HEAD` Indicates the start of the merge conflict.
-- `=======` Indicates the break point used for comparison.
-- `>>>>>>> <long string>` Indicates the end of the lines that had a merge conflict.
+- `<<<<<<< HEAD` Birlashish ziddiyatining boshlanishini bildiradi.
+- `=======` Taqqoslash uchun ishlatilgan sinish nuqtasini bildiradi.
+- `>>>>>>> <long string>` Birlashish, muammoga ega bo'lgan satrlarning oxirini bildiradi.
 
 ---
 
-# Merge conflicts (cont.)
+#  Muammolarni birlashtirish (davomi.)
 
-Fixing these conflicts is a simple matter of (manually) editing the README file.
-- Delete the lines of the text that you don't want.
-- Then, delete the special Git merge conflict symbols.
+Ushbu muammolarni tuzatish uchun README faylini tahrirlash (qo'lda) kifoya.
+- Siz istamagan matn satrlarini o'chirib tashlang.
+- Keyin, maxsus  Git merge conflict belgilarini o'chirib tashlang.
 
-Once that's done, you should be able to stage, commit, pull and finally push your changes to the GitHub repo without any errors.
+Bu amalga oshirilgandan so'ng, siz GitHub repo ga o'zgartirishlaringizni hech qanday xatoliksiz stage, commit, pull va push qilishingiz mumkin.
 
 --
 
-Caveats
-- P1 gets to decide what to keep because they fixed the merge conflict.
-- OTOH, the full commit history is preserved, so P2 can always recover their changes if desired.
-- A more elegant and democratic solution to merge conflicts (and repo changes in general) is provided by Git **branches**. We'll get there next.
+Ogohlantirishlar
+- P1 nimani saqlashni hal qiladi, chunki u birlashmadagi muammolarni tuzatish imkoniyatiga ega.
+- OTOH, to'liq bajarilish tarixi saqlanib qoladi, shuning uchun P2 istalgan vaqtda har doim o'z o'zgarishlarini tiklay oladi.
+- Muammolarni birlashtirish uchun eng yaxshi yechim bu   Git **branches** ga ega bo'lish.
 
 ---
 
-# Aside: Line endings and different OSs
+# Chiziqli tugatish va turli xil operatsion tizimlar
 
-### Problem
+### Muammo
 
 During your collaboration, you may have encountered a situation where Git is highlighting differences on seemingly unchanged sentences.
 - If that is the case, check whether your partner is using a different OS to you.
@@ -555,9 +512,9 @@ The "culprit" is the fact that Git evaluates an invisible character at the end o
 - For Linux and MacOS, that ending is "LF"
 - For Windows, that ending is "CRLF" (of course it is...)
 
-### Solution
+### Yechim
 
-Open up the shell and enter
+Shell ni ochi va kiriting.
 
 ```bash
 $ git config --global core.autocrlf input
@@ -574,25 +531,25 @@ name: branches
 
 ---
 
-# What are branches and why use them?
+# Branches nima va nima uchun ulardan foydalaniladi?
 
-Branches are one of Git's coolest features.
-- Allow you to take a snapshot of your existing repo and try out a whole new idea *without affecting* your main (i.e. "master") branch.
-- Only once you (and your collaborators) are 100% satisfied, would you merge it back into the master branch.<sup>1</sup>
-  - This is how most new features in modern software and apps are developed.
-  - It is also how bugs are caught and fixed.
-  - But researchers can easily — and should! — use it to try out new ideas and analysis (e.g. robustness checks, revisions, etc.)
-- If you aren't happy, then you can just delete the experimental branch and continue as if nothing happened.
+Branches Gitning eng ajoyib xususiyatlaridan biridir.
+-Mavjud repoingizning suratini olishga va o'zingizning asosiy (ya'ni "master") branchingizga ta'sir qilmasdan butunlay yangi g'oyani sinab ko'rishga ruxsat bering.
+-Siz (va sizning hamkasblaringiz) 100% qoniqtirgandan keyingina uni yana master branchga qo'shasiz.<sup>1</sup>
+  - Zamonaviy dasturiy ta'minot va ilovalardagi yangi xususiyatlarning ko'pi shu tarzda ishlab chiqilgan.
+- Xatolar qanday topiladi va qanday tuzatiladi.
+  - Biroq tadqiqodchilar uchun bu narsa qiyinchilik tug'dirmatdi va aslida shunday bo'lishiyam kerak! — bundan yangi g'oyalarni sinab korishda foydalaning 
+- Agar siz xursand bo'lmasangiz, unda siz eksperimental shoxchani o'chirib tashlab, hech narsa bo'lmaganday davom ettirishingiz mumkin.
 
-.footnote[<sup>1</sup> You can actually have branches of branches (of branches). But let's not get ahead of ourselves.]
+.footnote[<sup>1</sup> Siz aslida branchlarning  branchlariga ega bo'lishingiz mumkin. Ammo keling, o'zimizdan ustun bo'lmaylik.]
 
 --
 
-I use branches all the time for my own research projects.
+Men o'zimning ilmiy loyihalarim uchun doimo branchlardan foydalanaman.
 
 ---
 
-# Create a new branch in RStudio
+# RStudioda yangi branch yaratish 
 
 <div align="center">
 <img src="pics/git-new-branch.gif" height=500>
@@ -600,29 +557,29 @@ I use branches all the time for my own research projects.
 
 ---
 
-# Branch shell commands
+# Branch shell buyruqlari
 
-Create a new branch on your local machine and switch to it:
+O'z kompyuteringizda yangi branch on your local machine and switch to it:
 ```bash
 $ git checkout -b NAME-OF-YOUR-NEW-BRANCH
 ```
 
-Push the new branch to GitHub:
+Yangi branchni GitHubga qo'ying:
 ```bash
 $ git push origin NAME-OF-YOUR-NEW-BRANCH
 ```
 
-List all branches on your local machine:
+Barcha branchelarni ro'yxatini tuzing:
 ```bash
 $ git branch
 ```
 
-Switch back to (e.g.) the master branch:
+Master branchga qayting:
 ```bash
 $ git checkout master
 ```
 
-Delete a branch
+branchni o'chirish
 ```bash
 $ git branch -d NAME-OF-YOUR-FAILED-BRANCH
 $ git push origin :NAME-OF-YOUR-FAILED-BRANCH
@@ -630,46 +587,46 @@ $ git push origin :NAME-OF-YOUR-FAILED-BRANCH
 
 ---
 
-# Merging branches + Pull requests
+# Branchlarni birlashtirish + Pull requestlar
 
-You have two options:
+sizda ikkita tanlov mavjud:
 
-### 1. Locally
-- Commit your final changes to the new branch (say we call it "new-idea").
-- Switch back to the master branch: `$ git checkout master`
-- Merge in the new-idea branch changes: `$ git merge new-idea`
-- Delete the new-idea branch (optional): `$ git branch -d new-idea`
+### 1. Ichki
+- Eng so'nggi o'zgarishlarni yangibranchga kiriting  (bunga "yangi g'oya" deyiladi).
+- Master branchga qayting: `$ git checkout master`
+- Eng so'nggi g'oyadagi o'zgarishlar bilan birlashtiring: `$ git merge new-idea`
+- Yangi g'oyani o'chirish (ixtiyoriy): `$ git branch -d new-idea`
   
-### 2. Remotely (i.e. *pull requests* on GitHub)
-- PRs are a way to notify collaborators — or yourself! — that you have completed a feature.
-- You write a summary of all the changes contained in the branch.
-- You then assign suggested reviewers of your code — including yourself potentially — who are then able to approve these changes ("Merge pull request") on GitHub.
-- Let's practice this now in class...
+### 2.Tashqi(masofadan) (GitHubda *pull requestlar*  )
+
+- Siz branchdagi barcha o'zgarishlarning xulosasini yozasiz..
+- - Keyin siz GitHub-da ushbu o'zgarishlarni ("Merge pull request") ma'qullashi mumkin bo'lgan kodingizni, shu jumladan o'zingizning potentsialingiz bo'yicha taqrizchilarni tayinlaysiz. 
+- Keling, buni endi darsda mashq qilaylik ...
 
 ---
 
-# Your first pull request
+# Sizning birinchi pull requestingiz
 
-You know that "new-idea" branch we just created a few slides back? Switch over to it if you haven't already.
-- Remember: `$ git checkout new-idea` (or just click on the branches tab in RStudio)
+- Bilasizmi, biz "yangi g'oya" bo'limida bir nechta slaydlar yaratdik. Agar qilmagan bo'lsangiz, unga o'ting.
+- Esingizda bo'lsin: `$ git checkout new-idea` (yoki faqat RStudio-dagi filiallar yorlig'ini bosing)
 
-Make some local changes and then commit + push them to GitHub.
-- The changes themselves don't really matter. Add text to the README, add some new files, whatever.
+Ba'zi ichki o'zgarishlar kiriting va GitHubga *commit + push*  qiling.
+-O'zgarishlarning o'zi unchalik ahamiyatga ega emas. README-ga matn,yangi fayllarni va nima xohlasangiz qo'shing.
 
-After pushing these changes, head over to your repo on GitHub.
-- You should see a new green button with "Compare & pull request". Click it.
-- Add a meta description of what this PR accomplishes. You can also change the title if you want.
-- Click "Create pull request".
-- (Here's where you or your collaborators would review all the changes.)
-- Once satisfied, click "Merge pull request" and then confirm.
+O'zgarishlarni pushing qilganingizdan keyin, GitHubdagi repoga o'ting.
+- Siz "Compare & pull request" tugmachasini ko'rishingiz mumkin. Tugmani bosing.
+- Ushbu PR nimani amalga oshirishi haqida meta tavsifini qo'shing. Agar xohlasangiz, sarlavhani ham o'zgartirishingiz mumkin.
+- "Create pull request" tugmasini bosing.
+- (Bu erda siz yoki hamkorlaringiz barcha o'zgarishlarni ko'rib chiqasiz.)
+- Hammasi joyida bo'lsa,"Merge pull request" ni bosing va tasdiqlang.
 
 ???
 
-See instructions <a href="https://help.github.com/articles/creating-a-pull-request/" target="_blank">here</a>.
+Ba'zi ko'rsatmalar <a href="https://help.github.com/articles/creating-a-pull-request/" target="_blank">here</a>.
 
 ---
 
-# Your first pull request (cont.)
+# Sizning birinchi pull requestingiz (davomi.)
 
 <div align="center">
 <img src="pics/git-pr.gif" height=500>
@@ -677,26 +634,25 @@ See instructions <a href="https://help.github.com/articles/creating-a-pull-reque
 
 ---
 
-# Forks
+# Fork
 
-Git forks lie somewhere between cloning a repo and branching from it.
-- In fact, if you fork a repo then you are really creating a copy of it.
+Git fork reponi clonlash va branching o'rtasida qayerdadir yotadi.
+- Aslida,reponi fork qilganingizdan keyin, uni nusxasini yaratishigiz mumkin.
 
-Forking a repo on GitHub is [very simple](https://help.github.com/articles/fork-a-repo/); just click the "Fork" button in the top-right corner of said repo.
-- This will create an independent copy of the repo under your GitHub account.
-- Try this now. Use one of [my repos](https://github.com/grantmcdermott?tab=repositories) if you can't think of anyone else's.
+GitHubda reponi Fork qilish  [juda oddiy](https://help.github.com/articles/fork-a-repo/); shunchaki, reponing yuqori o'ng burchagidagi tugma "Fork" ni bosing.
+- Bu sizning GitHub accountingiz ostida mustqil nusxa yaratadi.
+- Hoziroq sinab ko'ring. Agar sizda boshqa tanlov bo'lmasa, mening xohlagan bir [ repoyimni](https://github.com/grantmcdermott?tab=repositories) ishlating .
 
-Once you fork a repo, you are free to do anything you want to it. (It's yours.) However, forking — in combination with pull requests — is actually how much of the world's software is developed. For example:
-- Outside user *B* forks *A*'s repo. She adds a new feature (or fixes a bug she's identified) and then [issues an upstream pull request](https://help.github.com/articles/creating-a-pull-request-from-a-fork/).
-- *A* is notified and can then decide whether to merge *B*'s contribution with the main project.
-
+Reponi fork qilganingizdan keyin, siz xohlagan ishingizni qilishingiz mumkin.   Fork — pull request kombinatsiyasi orqali ishlaydi.Masalan:
+-  tashqarisida  formasi  ning reposini. *B* foydalanuvchiyangi qaysidir xususiyatni qo'shadi (yoki aniqlangan xatoni tuzatadi), so'ngra *A* foydalanuvchiga [upstream pull request](https://help.github.com/articles/creating-a-pull-request-from-a-fork/) so'rovini yuboradi.
+- *A* xabardor qilinadi va keyinchalik *B* ning o'zgarishlari asosiy loyiha bilan birlashtirish to'g'risida qaror qabul qilishi mumkin.
 ---
 
-# Forks (cont.)
+# Fork (davomi.)
 
-Creating forks is super easy as we've just seen. However, maintaining them involves some more leg work if you want to stay up to date with the original repo.
-- GitHub: "[Syncing a fork](https://help.github.com/articles/syncing-a-fork/)"
-- OTOH, this isn't going to be an issue for completed projects. E.g. Forking the repo that contains the code and data of a published paper.
+Ko'rganimizdek, fork yaratish juda ham oson.Biroq,agar siz asl reponing dolzarbligini yo'qotmagan holda ularni saqlab qolishni istasangiz, bu ish ko'proq qadamlarni o'z ichiga olishini esdan chiqarmasligingiz kerak kerak.
+- GitHub: "[Forkni sinxronlashtirish](https://help.github.com/articles/syncing-a-fork/)"
+- OTOH, bu tugallangan loyihalar uchun muammo bo'lmaydi. Nashr qilingan qog'ozning kodi va ma'lumotlarini o'z ichiga olgan reponi fork qilish.
 
 --
 
@@ -710,7 +666,7 @@ Remember that "OSS contribution" component of the course (i.e. 10% of your final
 class: inverse, center, middle
 name: other
 
-# Other tips
+# Boshqa tavsiyalar
 <html><div style='float:left'></div><hr color='#EB811B' size=1px width=796px></html>
 
 ---
@@ -731,9 +687,9 @@ READMEs should be written in Markdown, which GH automatically renders.
 
 # .gitignore
 
-A .gitignore file tells Git what to — *wait for it* — ignore.
+A .gitignore fayli Gitga nima qilish kerakligini aytadi— *uni kuting* — e'tiborsiz qoldiring.
 
-This is especially useful if you want to exclude whole folders or a class of files (e.g. based on size or type).
+Bu, ayniqsa, butun papkalarni yoki fayllar sinfini chiqarib tashlamoqchi bo'lsangiz (masalan, hajmi yoki turiga qarab) foydalidir.
 - Proprietary data files should be ignored from the beginning if you intend to make a repo public at some point.
 - Very large individual files (>100 MB) exceed GitHub's maximum allowable size and should be ignored regardless. See <a href="https://help.github.com/articles/working-with-large-files/" target="_blank">here</a> and <a href="https://help.github.com/articles/versioning-large-files/" target=_"blank">here</a>.
 
@@ -763,105 +719,37 @@ Once the .gitignore file is created, simply add in lines of text corresponding t
 
 # GitHub Issues
 
-[GitHub Issues](https://guides.github.com/features/issues/) are another great way to interact with your collaborators and/or package maintainers.
-- If you spot any problems with these lecture notes, please file an issue [here](https://github.com/uo-ec607/lectures/issues)!
-  
+[GitHub Issues](https://guides.github.com/features/issues/) - bu sizning hamkasblaringiz yoki paketlarni saqlash bilan ishlashning yana bir ajoyib usuli.
+
+Agar siz ushbu ma'ruza yozuvlari bilan bog'liq muammolarni ko'rsangiz, iltimos, [bu yerda](https://github.com/uo-ec607/lectures/issues)! muammolarni yozing!
+
 ---
 class: inverse, center, middle
 name: summary
 
-# Summary
+# Xulosa
 <html><div style='float:left'></div><hr color='#EB811B' size=1px width=796px></html>
 
 ---
 
-# Recipe (shell commands in grey)
+# Retsept (shell buyruqlari kul rangda)
 
-1. Create a repo on GitHub and initialize with a README.
+1. GitHub-da repo yarating va README bilan boshlang.
 
-2. Clone the repo to your local machine. Preferably using an RStudio Project, but as you wish. (E.g. Shell command: `$ git clone REPOSITORY-URL`)
+2.Reponi o'z kompyuteringizga clone qiling. RStudio loyihasidan foydalanish tavsiya etiladi. (Misol uchun shell buyruqi: `$ git clone REPOSITORY-URL`)
 
-3. Stage any changes you make: `$ git add -A`
+3. Siz kiritgan barcha o'zgarishlarni bosqichma-bosqich o'tkazing: `$ git add -A`
 
-4. Commit your changes: `$ git commit -m "Helpful message"`
+4.O'zgarishlarni commit qiling: `$ git commit -m "Helpful message"`
 
-5. Pull from GitHub: `$ git pull`
+5.GitHubdan Pull qiling: `$ git pull`
 
-6. (Fix any merge conflicts.)
+6. (Merge qilish bilan  bog'liq muammolarni bartaraf qiling.)
 
-7. Push your changes to GitHub: `$ git push`
+7. O'zgarishlaringizni GitHubga Push qiling: `$ git push`
 
 --
 
-Repeat steps 3—7 (but especially steps 3 and 4) often.
+3-7 qadamlarni tez-tez takrorlang.
 
 ---
-
-# Coming up
-
-### Get the course materials
-
-If you haven't done so already, now is a good time to clone/fork the course materials to your local computer.
-
-### Assignment 1
-
-Now that you've learned the necessary basics, Assignment 1 is up on GitHub Classroom.
-- Impress me with your ggplot2 skills.
-- Deadline: Due by the *start* of our next lecture.
-
-
-### Next lecture
-
-Learning to love the shell...
-
----
-class: inverse, center, middle
-name: faq
-
-# Appendix: FAQ
-<html><div style='float:left'></div><hr color='#EB811B' size=1px width=796px></html>
-
----
-
-# FAQ
-
-**Q: When should I commit (and push) changes?**
-
-**A: Early and often.**
-- It's not quite as important as saving your work regularly, but it's a close second.
-- You should certainly push everything that you want your collaborators to see.
-  
-**Q: Do I need branches if I am working on a solo project?**
-
-**A: You don't *need* them, but they offer big advantages in maintaining a sane workflow.**
-- Experiment without any risk to the main project!
-- If you combine them with pull requests, then you can compress significant additions to your project (which may comprise many small edits) into a single branch.
-
----
-
-# FAQ (cont.)
-
-**Q: What's the difference between cloning and forking a repo?**
-
-**A: Cloning directly ties your local version to the original repo, while forking creates a copy on your GitHub (which you can then clone).**
-- <a href="http://happygitwithr.com/clone.html" target="_blank">Cloning</a> makes it easier to fetch updates (and is often the best choice for new GitHub users), but <a href="http://happygitwithr.com/fork.html" target="_blank">forking</a> has advantages too.
-
-**Q: What happens when something goes wrong?**
-
-**A: Think: "Oh shit, Git!"**
-- Seriously: http://ohshitgit.com/.
-  
-**Q: What happens when something goes <i>horribly</i> wrong?**
-
-**A: Burn it down and start again.**
-- http://happygitwithr.com/burn.html
-- This is a great advantage of Git's distributed nature. If something goes horribly wrong, there's usually an intact version somewhere else.
-  
----
-
-# FAQ (cont.)
-
-<div align="center">
-<img src="https://imgs.xkcd.com/comics/git_2x.png" height=500>
-</div>
-
