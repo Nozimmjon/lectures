@@ -1,5 +1,5 @@
 ---
-title: "Iqtisodchilar uchun ma'lumotlar bazasi"
+title: "Iqtisodchilar uchun ma'lumotlar ilmi"
 subtitle: "Ma'ruza № 2: Git(Hub)da Version control  "
 author: "Ortiqov Nozimjon"
 output:
