@@ -1,6 +1,6 @@
 ---
 title: "Iqtisodchilar uchun ma'lumotlar bazasi"
-subtitle: "Ma'ruza № 2: Git(Hub)da Version control  "
+subtitle: "Ma'ruza № 2: Git(Hub)da Version control"
 author: "Ortiqov Nozimjon"
 output:
   xaringan::moon_reader:
@@ -169,7 +169,7 @@ Endi GitHub-da o'z repoingizni yaratib, uni "test" deb nomlang va uni RStudio lo
 
 # Ba'zi ichki o'zgarishlarni kiriting
 
-RStudio IDE-dagi yuqori o'ng panelga qarang. "Git" yorlig'ini ko'rasizmi?
+RStudio IDE-dagi yuqorida turgan o'ng panelga qarang. "Git" yorlig'ini ko'rasizmi?
 - Git yozuvi ustiga bosing. 
 - U yerda  fayllar bo'lishi kerak, biz ularni hozircha e'tiborsiz qoldirib turamiz.<sup>1</sup>
 
