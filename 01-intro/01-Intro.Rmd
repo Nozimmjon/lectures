@@ -1,9 +1,9 @@
 ---
-title: "Data Science for Economists"
+title: "R dasturi fundamentlari"
 # subtitle: "<html><div style='float:left'></div><hr color='#EB811B' size=1px width=796px></html>"
-subtitle: "Lecture 1: Introduction"
-author: "Grant McDermott"
-date: "University of Oregon | [EC 607](https://github.com/uo-ec607)" #"`r format(Sys.time(), '%d %B %Y')`"
+subtitle: "1-dars: Kirish"
+author: "Ortikov Nozimjon"
+date:  "`r format(Sys.time(), '%d %B %Y')`"
 output:
   xaringan::moon_reader:
     css: [default, metropolis, metropolis-fonts] 
@@ -29,60 +29,32 @@ library(hrbrthemes)
 library(fontawesome)
 ```
 
-# Table of contents
+# Mundarija
 
-1. [Prologue](#prologue)
+1. [Prolog](#prologue)
 
-2. [Syllabus highlights](#syllabus)
+2. [Syllabus](#syllabus)
 
-3. [Getting started](#started)
+3. [Ma'ruza boshlanishi ](#started)
 
-4. [R for data science](#r4ds)
+4. [Ma'lumotlar ilmi uchun R ](#r4ds)
 
-5. [Data visualization with ggplot2](#ggplot2)
+5. [ggplot2 yordamida ma'lumotlarni vizualizatsiya qilish ](#ggplot2)
 
 
 ---
 class: inverse, center, middle
 name: prologue
 
-# Prologue
+# Prolog
 
 <html><div style='float:left'></div><hr color='#EB811B' size=1px width=796px></html>
-
----
-
-# Introductions
-
-### Course
-
-`r fa('globe')` https://github.com/uo-ec607
-
-You'll soon receive access to a quarter-specific copy of this repo, where we 
-submit assignments, upload presentations, etc.
-
---
-
-### Me
-
-`r fa('address-book')` [Grant McDermott](https://grantmcdermott.com/)
-
-`r fa('envelope')` [grantmcd@uoregon.edu](mailto:grantmcd@uoregon.edu)
-
-`r fa('graduation-cap')` Assistant Professor (environmental economics and data science)
-
---
-
-### You
-
-A quick roundtable of names, fields/interests, and coding background.
-
 
 ---
 class: inverse, center, middle
 name: syllabus
 
-# Syllabus highlights
+# Syllabus 
 
 <html><div style='float:left'></div><hr color='#EB811B' size=1px width=796px></html>
 
@@ -90,187 +62,135 @@ name: syllabus
 
 ---
 
-# Why this course?
+# Nima uchun bu kurs?
 
-Fill in the gaps left by traditional econometrics and methods classes.
-
-- Practical skills that tools that will benefit your dissertation and future career.
-- Neglected skills like how to actually find datasets in the wild and clean them.
-
-Data science skills are largely distinct from (and complementary to) the core 'metrics oeuvre familiar to economists.
-
-- Data viz, cleaning and wrangling; programming; cloud computation; relational databases; machine learning; etc.
+Ananaviy ekonometrika darslari tomonidan qoldirilgan bo'shliqlarni to'ldirish.
+- Ilmiy ish yozish, kelajakdagi karyerangizga foyda keltiruchi amaliy ko'nikmalar.
+- Qanday qilib ma'lumotlar to'plamini topish va ularni tozalash kabi e'tibordan chetda qolgan ko'nikmalar.
+- Ma'lumotlarni vizualizatsiya qilish, tozalash va qayta ishlash; dasturlash; cloud computation; nisbiy ma'lumotlar bazalari; machine learning, va boshqalar.
 
 --
 
-> *"In short, we will cover things that I wish someone had taught me when I was starting out in graduate
-school."*
+> *"Qisqasi, institutda o'qitishlarini xoxlagan narsalarni qamrab oladi."*
 
 ---
 
-# You, at the end of this course
+# Ma'ruza tuzilishi
 
-<div align="center">
-<img src="pics/awesome.jpg">
-</div>
+### Ma'lumotlar ilmi (Data science) asoslari
 
----
-# Grading
+- Kirish: dasturiy ta'minotni o'rnatish va ma'lumotlarni vizualizatsiya qilish
+- Git(Hub) yordamida Version control 
+- Shell'ni o'rganish
+- R tilining asoslari
+- "Tidyverse" bilan ma'lumotlarni tozalash va qayta ishlash
+- Webscraping (web sahifadan ma'lumotlarni olish/qayta ishlash) 
 
-| Component                           | Weight |
-|:-|-:|
-| 4 × homework assignments (20% each) | 80% |
-| 2 × short presentations (5% each)		| 10% |
-| 1 × OSS contribution				        | 10% |
 
-- You can swap out one homework assignment for an (approved) final presentation of your own research.
-- [Short presentations](https://github.com/uo-ec607/presentations) summarize either a key lecture reading, or an (approved) software package/platform.
-- We'll get to OSS contribution later in the course, but this year I'm particularly encouraging contributions to [LOST](lost-stats.github.io/).
+### Analiz va dasturlash
 
---
-
-</br>
-
-PS &mdash; I'll also award a class participation bonus (2.5%) at my discretion.
+- R da regression tahlil
+- R da spatial (hudud/karta) tahlil
+- R da funksiyalar: (1) kirish tushunchalari
+- R dagi funksiyalar: (2) Kengaytirilgan tushunchalar
+- Parallel dasturlash
 
 ---
-# Lecture outline
+# Ma'ruza tuzilishi (davomi.)
 
-### Data science basics
-
-- Introduction: Motivation, software installation, and data visualization
-- Version control with Git(Hub)
-- Learning to love the shell
-- R language basics
-- Data cleaning and wrangling with the "Tidyverse"
-- Webscraping: (1) Server-side and CSS
-- Webscraping: (2) Client-side and APIs
-
-### Analysis and programming
-
-- Regression analysis in R
-- Spatial analysis in R
-- Functions in R: (1) Introductory concepts
-- Functions in R: (2) Advanced concepts
-- Parallel programming
-
----
-# Lecture outline (cont.)
-
-### Scaling up: Big data and cloud computation
+### Big data va cloud computation
 
 - Docker
-- Cloud computing with Google Compute Engine
+- Google Compute Engine' orqali Cloud computing 
 - High performance computing (Talapas cluster) 
-- Databases: SQL(ite) and BigQuery
+- Ma'lumotlar bazasi: SQL(ite) and BigQuery
 - Spark
 - Machine learning: (1)
-- Machine learning: (2)... Or, student project presentations (demand dependent)
-- Peer-review and student project presentations (demand dependent)
+- Machine learning: (2)
 
 ---
 class: inverse, center, middle
 name: started
 
-# Getting started
+# Ma'ruzani boshlaymiz
 
 <html><div style='float:left'></div><hr color='#EB811B' size=1px width=796px></html>
 
 ---
 
-# Software installation and registration
+# Dasturiy ta'minotni yuklash/registratisyasi
 
-1. Download [R](https://www.r-project.org/).
+1. [R](https://www.r-project.org/)'ni yuklab olish.
 
-2. Download [RStudio](https://www.rstudio.com/products/rstudio/download/preview/).
+2. [RStudio](https://www.rstudio.com/products/rstudio/download/preview/)'ni yuklab olish.
 
-3. Download [Git](https://git-scm.com/downloads).
+3. [Git](https://git-scm.com/downloads)'ni yuklab olish.
 
-4. Create an account on [GitHub](https://github.com/) and register for a student/educator [discount](https://education.github.com/discount_requests/new).
-  - You will soon receive an invitation to the quarter-specific course org. on GitHub, as well as [GitHub classroom](https://classroom.github.com), which is how we'll disseminate and submit assignments, receive feedback and grading, etc. 
-
+4. [GitHub](https://github.com/)'da sahifa oching va talaba/o'qituvchi sifatida ro'yhatdan o'ting ([discount](https://education.github.com/discount_requests/new)).
+  
 --
 
-If you had trouble completing any of these steps, please raise your hand.
-- My go-to place for installation guidance and troubleshooting is Jenny Bryan's http://happygitwithr.com.
+Agar yuqoridagi qadamlarni amalga oshirishda muammoga duch kelsangiz quyidagi [saytda](http://happygitwithr.com.) qanday qilish kerakligi batafsil yozilgan. 
 
 ---
 
-# Some OS-specific extras
+# Operatsion tizimga oid qo'shimchalar
 
-I'll detail further software requirements as and when the need arises. However, to help smooth some software installation issues further down the road, please also do the following (depending on your OS):
+Dasturiy ta'minotlarni o'rnatish bilan bog'liq ba'zi muammolarni hal qilishda yordam berish uchun quyidagilarni bajaring (operatsion tizimga qarab):
 
-- **Windows:** Install [Rtools](https://cran.r-project.org/bin/windows/Rtools/). I also recommend that you install [Chocolately](https://chocolatey.org/).
-- **Mac:** Install [Homebrew](https://brew.sh/). I also recommend that you configure/open your C++ toolchain (see [here](https://github.com/stan-dev/rstan/wiki/Installing-RStan-from-source-on-a-Mac#prerequisite--c-toolchain-and-configuration).)
-- **Linux:** None (you should be good to go).
+- **Windows uchun:** [Rtools](https://cran.r-project.org/bin/windows/Rtools/)'ni yuklab oling. Shunigdek [Chocolately](https://chocolatey.org/)'ni o'rnating.
+- **Mac uchun:** [Homebrew](https://brew.sh/)'ni yuklang. Shuningdek, C++ ni ochib, konfiguratsiya qilish tavsiya etiladi(Batafsil [shu yerda](https://github.com/stan-dev/rstan/wiki/Installing-RStan-from-source-on-a-Mac#prerequisite--c-toolchain-and-configuration).)
+- **Linux uchun:** Hech narsa qilish shart emas.
 
 ---
 
-# Checklist
+# Tekshiramiz
 
-☑ Do you have the most recent version of R?
+☑ R' ning eng so'nggi versiyasini o'rnatganmisiz? 
   ```{r}
   version$version.string
   ```
 
 
-☑ Do you have the most recent version of RStudio? (The [preview version](https://www.rstudio.com/products/rstudio/download/preview/) is fine.)
+☑ RStudio'chi? 
   ```{r eval=FALSE}
   RStudio.Version()$version
   ## Requires an interactive session but should return something like "[1] ‘1.2.5001’"
   ```
 
-☑ Have you updated all of your R packages? 
+☑ Barcha R packagelar'ni yangilab olganmisiz?
   ```{r eval=FALSE}
   update.packages(ask = FALSE, checkBuilt = TRUE)
   ```
-  
 ---
 
-# Checklist (cont.)
+# Tekshiramiz (cont.)
 
-Open up the [shell](http://happygitwithr.com/shell.html#shell).
-- Windows users, make sure that you installed a Bash-compatible version of the shell. If you installed [Git for Windows](https://gitforwindows.org), then you should be good to go.
+[Shell](http://happygitwithr.com/shell.html#shell)'ni oching.
+- Windows foydalanuvchilari shell'ning Bash'ga mos keladigan versiyasini o'rnatganingizga ishonch hosil qiling. Agar siz [Windows uchun Git](https://gitforwindows.org)ni o'rnatgan bo'lsangiz, unda juda yaxshi. 
 
-☑ Which version of Git have you installed?
-  ```{bash}
-  git --version
-  ```
+☑ O'rnatilgan Gitning versiyasi qanday?
+  
 
-☑ Did you introduce yourself to Git? (Substitute in your details.)
+☑ Git'ga o'z ma'lumotlaringizni kiritdingizmi? (O'zingizni ma'lumotlaringiz bilan almashtiring)
   ```{bash eval=FALSE}
-  git config --global user.name 'Grant McDermott'
-  git config --global user.email 'grantmcd@uoregon.edu'
+  git config --global user.name 'Nozimjon Ortikov'
+  git config --global user.email 'noz4ik@gmail.com'
   git config --global --list
   ```
 
-☑ Did you register an account in GitHub? 
-
----
-
-# Checklist (cont.)
-
-We will make sure that everything is working properly with your R and GitHub setup next lecture.
-
-For the rest of today's lecture, I want to go over some very basic R concepts.
-
---
-
-</br>
-
-PS — Just so you know where we're headed: We'll return to these R concepts (and delve much deeper) next week after a brief, but important detour to the lands of Git(Hub) and the shell.
-- Don't worry, it will all make sense. You'll see.
+☑ Github'da ro'yhatdan o'tdingizmi?
 
 ---
 class: inverse, center, middle
 name: r4ds
 
-# R for data science
+# Ma'lumotlar ilmi uchun R
 <html><div style='float:left'></div><hr color='#EB811B' size=1px width=796px></html>
 
 ---
 
-# Why R and RStudio? (cont.)
+# Nima uchun R va RStudio? 
 ```{R, indeeddotcom, echo = F, fig.height = 6, fig.width = 9, dev = "svg"}
 # The popularity data
 pop_df <- 
@@ -305,74 +225,70 @@ pop_df %>%
 
 ---
 
-# Why R and RStudio? (cont.)
+# Nima uchun R va RStudio? (davomi)
 
 ### Data science positivism
 
-- Alongside Python, R has become the *de facto* language for data science.
-  - See: [*The Impressive Growth of R*](https://stackoverflow.blog/2017/10/10/impressive-growth-r/), [*The Popularity of Data Science Software*](http://r4stats.com/articles/popularity/)
-- Open-source (free!) with a global user-base spanning academia and industry.
-  - "Do you want to be a profit source or a cost center?"
+- Python bilan birga R ma'lumotlar fani uchun *de facto* tilga aylandi. 
+  - Batafsil: [*The Impressive Growth of R*](https://stackoverflow.blog/2017/10/10/impressive-growth-r/), [*The Popularity of Data Science Software*](http://r4stats.com/articles/popularity/)
+- Fan sohasida ishlovchi odamlarni qamrab olgan "Open-source" (tekin!) til.
 
-### Bridge to applied economics and other tools
 
-- Already has all of the statistics and econometrics support, and is amazingly adaptable as a “glue” language to other
-programming languages and APIs.
-- The RStudio IDE and ecosystem allow for further, seemless integration.
+### Amaliy iqtisodiyot va boshqa vositalar uchun ko'prik
 
-### Path dependency
+- Barcha statistik va ekonometrik hisob-kitoblarni qo'llab-quvvatlashga imkoniga ega.  
+- RStudio IDE va ekotizimi yanada ko'proq imkoniyatlarni ta'minlaydi.
 
-- It's also the language that I know best.
 --
 
-- (Learning multiple languages is a good idea, though.)
+Path dependency
+- Mazkur tilni yaxshiroq bilamiz
+- (Turli xil tillarni o'rganish bu yaxshi g'oya)
 
 ---
 
-# Some R basics
+#  R ning asoslari 
 
-1. Everything is an object.
+1. Har bir narsa obyekt.
 
-2. Everything has a name.
+2. Har bir narsa o'z nomiga ega.
 
-3. You do things using functions.
+3. Hamma ishni funksiyalar yoramida amalga oshirasiz.
 
-4. Functions come pre-written in packages (i.e. "libraries"), although you can — and should — write your own functions too.
+4. Funksiyalar oldindan yozilgan package'lardir ("library"). Oz'ingiz ham funksiya yaratishingiz mumkin.
 
 --
 
 </br>
 
-Points 1. and 2. can be summarised as an [object-orientated programming](https://en.wikipedia.org/wiki/Object-oriented_programming) (OOP) approach.
-  - This may sound super abstract now, but we'll see *lots* of examples over the coming weeks that will make things clear.
+1. va 2. bandlarga ko'ra  R'ni [object-orientated programming](https://en.wikipedia.org/wiki/Object-oriented_programming) (OOP)ga amal qiluvchi til deb aytish mumkin.
+  - Bu juda ham abstrakt eshitilishi mumkin, biroq keyinroq ko'plab misollar ko'ramiz va bu termin yanada oydinlashadi. 
 
 ---
 
 # R vs Stata
 
-If you're coming from Stata, some additional things worth emphasizing:
+Agar Stata foydalanuvchisi bo'lsangiz, ta'kidlash kerak bo'lgan ba'zi holatlar:
+- Bir nechta obyektlar bir ishchi maydonda mavjud bolishi mumkin. 
+   - `keep`, `preserve`, `restore` kabilardan halos bo'lasiz. [Stata 16](https://www.stata.com/new-in-stata/multiple-datasets-in-memory/) da mazkur noqulaylik bartaraf etilmoqda.
+   - Bu OOP'ning natijasidir.
 
-- Multiple objects (e.g. data frames) can exist happily in the same workspace. 
-   - No more `keep`, `preserve`, `restore` hackery. (Though, props to [Stata 16](https://www.stata.com/new-in-stata/multiple-datasets-in-memory/).)
-   - This is a direct consequence of the OOP approach.
+- Har bir yangi R sessiyaning boshida package'larni yuklaysiz. Sabrli bo'lish kerak.
+  - "Base" R da bir qator ichida o'rnatilgan foydali funkiyalar mavjud. O'zingiz ham bemalol funksiya yozishingiz mumkin.  
+  - R' ning ma'lumotlar bilan ishlashga oid ko'plab eng yaxshi funksiyalari va vositalari boshqa foydalanuvchilar tomonidan yozilgan tashqi paketlardan iborat.
 
-- You will load packages at the start of every new R session. Make peace with this.
-  - "Base" R comes with tons of useful in-built functions. It also provides all the tools necessary for you to write your own functions. 
-  - However, many of R's best data science functions and tools come from external packages written by other users.
-
-- R easily and infinitely parallelizes. For free.
-  - Compare the cost of a [Stata/MP](https://www.stata.com/statamp/) license, nevermind the fact that you effectively pay per core...
-
-- You don't need to `tset or xtset` your data. (Although you can too.)
+- R osongina va cheksiz ravishda parallellashadi. Tekinga.
+  - [Stata/MP](https://www.stata.com/statamp/) litsenziyasining narxini taqqoslang, har bir yadro uchun to'lashingizga to'g'ri keladi...
+- Ma'lumotlarni `tset yoki xtset` qilishga hojat yo'q.
 
 ---
 
-# R code example (linear regression)
-
+# R da kodlar bilan ishlashga misol (chiziqli regressiya)
 ```{r fit}
 fit = lm(mpg ~ wt, data = mtcars)
 summary(fit)
 ```
+
 
 ---
 
@@ -399,43 +315,44 @@ ggplot(data = mtcars, aes(x = wt, y = mpg)) +
 class: inverse, center, middle
 name: ggplot2
 
-# More ggplot2
+# ggplot2 (davomi)
 <html><div style='float:left'></div><hr color='#EB811B' size=1px width=796px></html>
 
 ---
 
-# Install and load
+# Yuklab oling va o'rnating 
 
-Open up your laptops. For the remainder of this first lecture, we're going continue playing around with [ggplot2](https://ggplot2.tidyverse.org/) (i.e. livecoding).
+Ma'ruzaning qolgan qismida biz [ggplot2](https://ggplot2.tidyverse.org/)'dan foydalanamiz (livecoding).
 
-If you don't have them already, install the `ggplot2` and `gapminder` packages via either:
-- **Console:** Enter `install.packages(c("ggplot2", "gapminder"), dependencies=T)`.
-- **RStudio:** Click the "Packages" tab in the bottom-right window pane. Then click "Install" and search for these two packages.
+`ggplot2` and `gapminder` package'larni quyidagi usullardan biri orqali o'rnating: 
+- `install.packages(c("ggplot2", "gapminder"), dependencies=T)` ni **Console**ga kiriting.
+- **RStudio:** pastgi o'ng burchakdagi panellar oynasidan "Packages" tab'iga bosing . Keyin "Install"ni bosing va mazkur package'larni qidiring.
   
 ![](pics/install.gif)
 
 ---
 
-# Install and load (cont.)
+# Yuklab oling va o'rnating (davomi)
 
-Once the packages are installed, load them into your R session with the `library()` function.
+Package'larni o'rnatgandan so'ng, ularni R sessiyaga `library()`funksiyasi bilan yuklang.
 ```{r pkg_load}
 library(ggplot2)
-library(gapminder) ## We're just using this package for the gapminder data
+library(gapminder) ## Biz  gapminder ma'lumotlari uchun ushbu paketdan foydalanmoqdamiz
 ```
 
-Notice too that you don't need quotes around the package names any more. Reason: R now recognises these packages as defined objects with given names. ("Everything in R is an object and everything has a name.")
+E'tiborlisi, endi paket nomlarini qo'shtirnoqqa olish shart emas. Sababi: R endi ushbu paketlarni berilgan nomlar bilan belgilangan ob'ektlar sifatida taniydi. ("R'da hamma narsa obekt va hamma narsa o'z nomiga ega.")
 
 --
 
-PS — A convenient way to combine the package installation and loading steps is with the [pacman package's](https://github.com/trinker/pacman) `p_load()` function. If you run `pacman::p_load(ggplot, gapminder)` it will first look to see whether it needs to install either package before loading them. Clever.
-- We'll get to this next week, but if you want to run a function from an (installed) package without loading it, you can use the `PACKAGE::package_function()` syntax.
+PS - paketni o'rnatish va yuklash bosqichlarini birlashtirishning qulay usuli bu [pacman package's](https://github.com/trinker/pacman)ning `p_load()` funksiyasidir. Agar `pacman::p_load(ggplot, gapminder)` ni kiritsangiz, funksiya ularni o'rnatishdan oldin ikkala paketni yuklash kerak kerak emasligini tekshiradi. Aqlli funksiya.
+
+- Keyinroq yana o'rganamiz, ammo paketni yuklamay turib funksiyaning ishlashini xohlasangiz,`PACKAGE::package_function()` sintaksisidan foydalanishingiz mumkin.
 
 ---
 
-# Brief aside: The gapminder dataset
+# Gapminder ma'lumotlar to'plami haqida
 
-Because we're going to be plotting the [gapminder](https://github.com/jennybc/gapminder) dataset, it is helpful to know that it contains panel data on life expectancy, population size, and GDP per capita for 142 countries since the 1950s.
+Biz [gapminder](https://github.com/jennybc/gapminder) ma'lumotlar to'plamda 1950 yildan beri 142 mamlakat uchun umr ko'rish davomiyligi, aholi soni va aholi jon boshiga YaIM kabi ma'lumotlar mavjud.  
 
 ```{r gapm}
 gapminder
@@ -444,24 +361,24 @@ gapminder
 
 ---
 
-# Elements of ggplot2
+# ggplot2 elementlari
 
-[Hadley Wickham's](http://hadley.nz/) ggplot2 is one of the most popular packages in the entire R canon. 
-- It also happens to be built upon some deep visualization theory: i.e. Leland Wilkinson's [*The Grammar of Graphics*](https://www.amazon.com/Grammar-Graphics-Statistics-Computing/dp/0387245448).
+[Hadley Wickham](http://hadley.nz/)ning ggplot2' R'dagi eng mashhur package'lardan biri. 
+- Bundan tashqari mazkur package chuqur vizualizatisya nazariyasiga asoslangan: Leland Uilkinsonning [*Grafika grammatikasi*](https://www.amazon.com/Grammar-Graphics-Statistics-Computing/dp/0387245448). 
 
-There's a lot to say about ggplot2's implementation of this "grammar of graphics" approach, but the three key elements are:
+ggplot2'ning "grafika grammatikasi" haqida ko'p gapirish mumkin, ammo uning 3ta eng muhim xususiyati quyidgailar:
 
-1. Your plot ("the visualization") is linked to your variables ("the data") through various **aesthetic mappings**.
+1. Sizning plotingiz ("vizualizatsiyangiz") turli xil **aesthetic mapping** orqali o'zgaruvchilar ("ma'lumotlar")ga bog'langan.
 
-2. Once the aesthetic mappings are defined, you can represent your data in different ways by choosing different **geoms** (i.e. "geometric objects" like points, lines or bars).
+2. **aesthetic mapping** aniqlangandan so'ng, turli xil **geomlarni** (ya'ni nuqta, chiziqlar yoki ustunlar kabi "geometrik ob'ektlar") tanlab, ma'lumotlaringizni turli usullar bilan namoyish etishingiz mumkin. 
 
-3. You build your plot in **layers**.
+3. O'z plotingizni **layer**'lar yordamadida yaratasiz.
 
 --
 
 </br>
 
-That's kind of abstract. Let's review each element in turn with some actual plots.
+Bu biroz mavhum eshitilishi mumkin. Shuning uchun har bir elementni ko'rib chiqamiz. 
 
 ---
 
@@ -472,28 +389,27 @@ ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp)) +
   geom_point()
 ```
 
-
 ---
 
-# 1. Aesthetic mappings (cont.)
+# 1. Aesthetic mappings (davomi)
 
 ```{r aesthetics1, eval=FALSE}
 ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp)) + 
   geom_point()
 ```
 
-Focus on the top line, which contains the initialising `ggplot()` function call. This function accepts various arguments, including:
-- Where the data come from (i.e. `data = gapminder`).
-- What the aesthetic mappings are (i.e. `mapping = aes(x = gdpPercap, y = lifeExp)`).
+"ggplot()" funksiyasini chaqirishni o'z ichiga olgan yuqori qatorga e'tibor bering. 
+Ushbu funksiya turli xil argumentlarni qabul qiladi, jumladan:
+-  (`data = gapminder`) ma'lumotlar qayerdan kelayotganini ko'rsatadi.
+-  (`mapping = aes(x = gdpPercap, y = lifeExp)`)lar aesthetic mappings'larni ko'rsatadi.
 
 --
 
-The aesthetic mappings here are pretty simple: They just define an x-axis (GDP per capita) and a y-axis (life expecancy).
-- To get a sense of the power and flexibility that comes with this approach, however, consider what happens if we add more aesthetics to the plot call...
+Bu aesthetic mappings'ning ma'nosi oddiy: ular *x* o'qi (jon boshiga YaIM) va *y* o'qi (umr ko'rish davomiyligi)da qanday ko'rsatkichlar qo'yilishini ifoda etadi.
 
 ---
 
-# 1. Aesthetic mappings (cont.)
+# 1. Aesthetic mappings (davomi)
 
 ```{r aesthetics2, dev='svg'}
 ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp, size = pop, col = continent)) + 
@@ -502,11 +418,11 @@ ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp, size = pop, col = conti
 
 --
 
-Note that I've dropped the "mapping =" part of the ggplot call. Most people just start with "aes(...)", since `ggplot2` knows the order of the arguments.
+ggplot2'ni chaqirishda "mapping=" qismini tushirib qoldirdik. Sababi, "ggplot2" argumentlarning tartibini biladi va ko'pchilik funksiyani "aes (...)" bilan boshlaydi.
 
 ---
 
-# 1. Aesthetic mappings (cont.)
+# 1. Aesthetic mappings (davomi)
 
 We can specify aesthetic mappings in the geom layer too.
 ```{r aesthetics3, dev='svg'}
@@ -516,9 +432,9 @@ ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) + ## Applicable to all
 
 ---
 
-# 1. Aesthetic mappings (cont.)
+# 1. Aesthetic mappings (davomi)
 
-Oops. What went wrong here?
+Ups. Qayerda xatolik bor? 
 ```{r aesthetics_mistake, warning=FALSE,dev='svg'}
 ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) + 
   geom_point(aes(size = "big", col="black"), alpha = 0.3)
@@ -526,11 +442,11 @@ ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) +
 
 --
 
-**Answer: **Aesthetics must be mapped to variables, not descriptions!
+**Javob: **Aesthetics must be mapped to variables, not descriptions!
 
 ---
 
-# 1. Aesthetic mappings (cont.)
+# 1. Aesthetic mappings (davomi)
 
 At this point, instead of repeating the same ggplot2 call every time, it will prove convenient to define an intermediate plot object that we can re-use.
 
@@ -541,7 +457,7 @@ p
 
 ---
 
-# 2. Geoms
+# 2. Geom'lar
 
 Once your variable relationships have been defined by the aesthetic mappings, you can invoke and combine different geoms to generate different visulaizations.
 
@@ -553,7 +469,7 @@ p +
 
 ---
 
-# 2. Geoms (cont.)
+# 2. Geom'lar (davomi)
 
 Aesthetics can be applied differentially across geoms.
 
@@ -564,7 +480,8 @@ p +
 ```
 
 ---
-# 2. Geoms (cont.)
+
+# 2. Geom'lar (davomi)
 
 The previous plot provides a good illustration of the power (or effect) that comes from assigning aesthetic mappings "globally" vs in the individual geom layers.
 - Compare: What happens if you run the below code chunk?
@@ -577,7 +494,7 @@ ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp, size = pop, col = conti
 
 ---
 
-# 2. Geoms (cont.)
+# 2. Geom'lar (davomi)
 
 Similarly, note that some geoms only accept a subset of mappings. E.g. `geom_density()` doesn't know what to do with the "y" aesthetic mapping.
 
@@ -587,7 +504,7 @@ p + geom_density()
 
 ---
 
-# 2. Geoms (cont.)
+# 2. Geom'lar (davomi)
 
 We can fix that by being more careful about how we build the plot.
 
@@ -598,14 +515,12 @@ ggplot(data = gapminder) + ## i.e. No "global" aesthetic mappings"
 
 ---
 
-# 3. Build your plot in layers
+# 3. O'z plotingizni yasang
 
-We've already seen how we can chain (or "layer") consecutive plot elements using the `+` connector.
-- The fact that we can create and then re-use an intermediate plot object (e.g. "p") is testament to this.
-
-But it bears repeating: You can build out some truly impressive complexity and transformation of your visualization through this simple layering process.
-- You don't have to transform your original data; ggplot2 takes care of all of that.
-- For example (see next slide for figure).
+Biz allaqachon "+" ulagichi yordamida ketma-ket plot elementlarini qanday qilib zanjirlashimiz (yoki "qatlam") mumkinligini ko'rdik.
+-Takrorlash kerak: Siz ushbu oddiy qatlamlash jarayoni orqali vizualizatsiyangizning juda ta'sirli murakkabligini va o'zgarishini yaratishingiz mumkin.
+- Siz asl ma'lumotingizni o'zgartirishingiz shart emas; ggplot2 bularning barchasini o'z qiladi.
+- Masalan (keyingi slaydga qarang).
 
 ```{r layers1}
 p2 =
@@ -620,7 +535,7 @@ p2 =
 
 ---
 
-# 3. Build your plot in layers (cont.)
+# 3.O'z plotingizni ketma-ketlikda yasang (davomi)
 
 ```{r layers2, dependson=p2, echo=FALSE, dev='svg'}
 p2
@@ -628,14 +543,14 @@ p2
 
 ---
 
-# What else?
+# Yana nima?
 
-We have barely scratched the surface of ggplot2's functionality... let alone talked about the entire ecosystem of packages that has been built around it. 
-- Here's are two quick additional examples to whet your appetite
+ggplot2 imkoniyatlarining oz qismi haqida to'xtaldik, xolos. 
+- Ishtahani ochiq uchun yana 2 ta qo'shimcha misol 
 
 --
 
-Note that you will need to install and load some additional packages if you want to recreate the next two figures on your own machine. A quick way to do this:
+Shuni bilishingiz muhimki, quyidagi ikkita rasmni yaratish uchun qo'shimcha paketlarni yuklashingiz va o'rnatishingiz kerak. Tezkor yo'li quyidagicha: 
 
 ```{r pacinstall}
 if (!require("pacman")) install.packages("pacman")
@@ -644,9 +559,9 @@ pacman::p_load(hrbrthemes, gganimate)
 
 ---
 
-# What else? (cont.)
+# Yana nima? (davomi))
 
-Simple extension: Use an external package theme.
+Murakkablashtirish: Tashqi paket orqali boshqa theme'dan foydalanish.
 ```{r modern_rc_theme, dependson=p2, dev='svg'}
 # library(hrbrthemes)
 p2 + theme_modern_rc() + geom_point(aes(size = pop, col = continent), alpha = 0.2)
@@ -654,9 +569,9 @@ p2 + theme_modern_rc() + geom_point(aes(size = pop, col = continent), alpha = 0.
 
 ---
 
-# What else? (cont.)
+# Yana nima? (davomi)
 
-Elaborate extension: Animation! (See the next slide for the resulting GIF.)
+Murakkablashtirish: Animatsiya! (paydo bo'lgan GIF'ni keyingi slaydda)
 ```{r gganim1, eval=FALSE}
 # library(gganimate)
 ggplot(gapminder, aes(gdpPercap, lifeExp, size = pop, colour = country)) +
@@ -673,7 +588,7 @@ ggplot(gapminder, aes(gdpPercap, lifeExp, size = pop, colour = country)) +
 
 ---
 
-# What else? (cont.)
+# Yana nima? (davomi)
 
 ```{r ggamin2, echo=FALSE}
 ggplot(gapminder, aes(gdpPercap, lifeExp, size = pop, colour = country)) +
@@ -690,24 +605,21 @@ ggplot(gapminder, aes(gdpPercap, lifeExp, size = pop, colour = country)) +
 
 --
 
-Note that this animated plot provides a much more intuitive understanding of the underlying data. Just as [Hans Rosling](https://www.ted.com/talks/hans_rosling_the_best_stats_you_ve_ever_seen) intended.
+Ushbu animatsion plot ma'lumotlarni ancha intuitiv tushunishga imkon beradi. Huddi [Hans Rosling](https://www.ted.com/talks/hans_rosling_the_best_stats_you_ve_ever_seen) o'ylaganidek.
 
 ---
-# What else? (cont.)
+# Yana nima? (davomi)
 
-There's a lot more to say, but I think we'll stop now for today's lecture.
+O'rganish kerak bo'lgan narsalar ko'p, lekin bugungi ma'ruzani shu joyda tugatamiz.
 
-We also haven't touched on ggplot2's relationship to "tidy" data.
-  - It actually forms part of a suite of packages collectively known as the [tidyverse](https://www.tidyverse.org/). 
-  - We will get back to this in Lecture 5.
+Shuningdek, biz ggplot2-ning "tidy" ma'lumotlarga aloqasi haqida to'xtalmadik.
+  - Bu aslida [tidyverse](https://www.tidyverse.org/) deb nomlanuvchi paketlar to'plamining bir qismini tashkil qiladi. 
+  - Buni yana gaplashamiz.
 
-Rest assured, you will be using ggplot2 throughout the rest of this course and developing your skills along the way.
-- Your very first assignment (coming up) is a chance specifically to hone some of those skills.
-
-In the meantime, I want you to do some reading and practice on your own. Pick either of the following (or choose among the litany of online resources) and work through their examples:
-- [Chapter 3](https://r4ds.had.co.nz/data-visualisation.html) of *R for Data Science* by Hadley Wickham and Garett Grolemund.
-- [*Data Visualization: A Practical Guide*](https://socviz.co/makeplot.html) by Kieran Healy.
-- [Designing ggplots](https://designing-ggplots.netlify.com) by Malcom Barrett.
+Qo'shimcha o'rganish uchun quyidagilardan foydalanish mumkin:
+- *Ma'lumotlar ilmi uchun R* kitobining [3-bobi](https://r4ds.had.co.nz/data-visualisation.html). Mualliflar: Hadley Wickham va Garett Grolemund.
+- [*Data Visualization: A Practical Guide*](https://socviz.co/makeplot.html) Muallif: Kieran Healy.
+- [Designing ggplots](https://designing-ggplots.netlify.com) Muallif: Malcom Barrett.
 
 ---
 class: inverse, center, middle
