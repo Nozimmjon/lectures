@@ -223,7 +223,7 @@ Ko'proq GIFlar ko'rishga tayyormisiz?
 
 ---
 
-# Push va Pull
+# Push and Pull
 
 <div align="center">
 <img src="pics/git-push-pull.gif" height=500>
