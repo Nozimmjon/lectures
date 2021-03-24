@@ -167,7 +167,7 @@ Endi GitHub-da o'z repoingizni yaratib, uni "test" deb nomlang va uni RStudio lo
 
 ---
 
-# Ba'zi ichki o'zgarishlar kiriting
+# Ba'zi ichki o'zgarishlarni kiriting
 
 RStudio IDE-dagi yuqori o'ng panelga qarang. "Git" yorlig'ini ko'rasizmi?
 - Git yozuvi ustiga bosing. 
