@@ -214,7 +214,7 @@ Ko'proq GIFlar ko'rishga tayyormisiz?
 
 ---
 
-# Stage va Commit
+# Stage va Commit.
 
 <div align="center">
 <img src="pics/git-stage-commit.gif" height=500>
