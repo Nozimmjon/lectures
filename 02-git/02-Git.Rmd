@@ -1,6 +1,6 @@
 ---
 title: "Iqtisodchilar uchun ma'lumotlar bazasi"
-subtitle: "Ma'ruza № 2: Git(Hub)da Version control"
+subtitle: "Ma'ruza № 2: Git(Hub)da Version control bilan ishlash"
 author: "Ortiqov Nozimjon"
 output:
   xaringan::moon_reader:
