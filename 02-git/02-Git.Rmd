@@ -159,7 +159,7 @@ Endi GitHub-da o'z repoingizni yaratib, uni "test" deb nomlang va uni RStudio lo
 
 ---
 
-# GitHub reposini RStudio loyihasiga ulang
+# GitHub reposini RStudio loyihasiga ulang!
 
 <div align="center">
 <img src="pics/git-create-repo.gif" height=500>
